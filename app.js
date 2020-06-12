@@ -15,8 +15,6 @@ app.use('/:nonexistentPage', (req, res) => {
   res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
 });
 
-
 app.listen(PORT, () => {
   console.log(`Приложение слушает порт ${PORT}`);
 });
-

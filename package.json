@@ -4,7 +4,8 @@
   "description": "sprin12",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "dev": "nodemon --inspect app.js"
   },
   "repository": {
     "type": "git",
@@ -15,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/zTironz/sprint12/issues"
   },
-  "homepage": "https://github.com/zTironz/sprint12#readme",
+  "homepage": "https://ztironz.github.io/sprint12",
   "devDependencies": {
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "^14.2.0",
