@@ -7,6 +7,7 @@ cardsRouter.get('/', (req, res) => {
   fs.readFile(filepath, { encoding: 'utf8' }, (err, data) => {
     if (err) {
       res.status(500).send(err.message);
+      return;
     }
     const cards = JSON.parse(data);
     res.send(cards);
