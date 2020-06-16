@@ -1,20 +1,16 @@
-const router = require('express').Router();
+const cardsRouter = require('express').Router();
 const path = require('path');
 const fs = require('fs');
 
-let cards = null;
-
-router.get('/cards', (req, res) => {
-  try {
-    if (!cards) {
-      const filepath = path.join(__dirname, '..', 'data', 'cards.json');
-      const cardsText = fs.readFileSync(filepath);
-      cards = JSON.parse(cardsText);
+cardsRouter.get('/', (req, res) => {
+  const filepath = path.join(__dirname, '../data/cards.json');
+  fs.readFile(filepath, { encoding: 'utf8' }, (err, data) => {
+    if (err) {
+      res.status(500).send(err.message);
     }
+    const cards = JSON.parse(data);
     res.send(cards);
-  } catch (err) {
-    res.status(500).send({ message: err });
-  }
+  });
 });
 
-module.exports = router;
+module.exports = cardsRouter;

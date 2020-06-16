@@ -1,48 +1,20 @@
-const router = require('express').Router();
+const usersRouter = require('express').Router();
 const path = require('path');
-const fs = require('fs');
 
-let users = null;
-let currentUser = null;
+const contents = require('../data/users.json');
 
-function readUsersFile(req, res, next) {
-  try {
-    const filepath = path.join(__dirname, '..', 'data', 'users.json');
-
-    if (!users) {
-      const usersText = fs.readFileSync(filepath);
-      users = JSON.parse(usersText.toString());
-    }
-
-    next();
-  } catch (err) {
-    res.status(500).send({ message: err });
-  }
-}
-
-function findUser(req, res, next) {
-  currentUser = users.find((item) => item._id === req.params.id);
-
-  if (!currentUser) {
-    res.status(404).send({ message: 'Нет пользователя с таким id' });
+usersRouter.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../data/users.json'));
+});
+usersRouter.get('/:id', (req, res) => {
+  const user = contents.find(({ _id: id }) => id === req.params.id);
+  if (!user) {
+    res.status(404).send({
+      message: 'Нет пользователя с таким id',
+    });
     return;
   }
-
-  next();
-}
-
-
-router.get('/users', readUsersFile);
-router.get('/users', (req, res) => {
-  res.send(users);
+  res.send(user);
 });
 
-
-router.get('/users/:id', readUsersFile);
-router.get('/users/:id', findUser);
-router.get('/users/:id', (req, res) => {
-  res.send(currentUser);
-});
-
-
-module.exports = router;
+module.exports = usersRouter;

@@ -7,14 +7,9 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', getCards);
-app.use(users);
-
-app.use('/:nonexistentPage', (req, res) => {
+app.use('/cards', getCards);
+app.use('/users', users);
+app.use('*', (req, res) => {
   res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
 });
-
-app.listen(PORT, () => {
-  console.log(`Приложение слушает порт ${PORT}`);
-});
+app.listen(PORT);
