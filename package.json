@@ -1,0 +1,28 @@
+{
+  "name": "sprint12",
+  "version": "1.0.0",
+  "description": "спринт 12 изучение основ бэкенда",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zTironz/sprint12.git"
+  },
+  "author": "Tiron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zTironz/sprint12/issues"
+  },
+  "devDependencies": {
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
